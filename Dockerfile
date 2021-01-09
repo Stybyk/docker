@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 
-RUN apt-get update --no-cache add \
+RUN apt-get update -t build-dependencies \
     busybox-extras \
     acl \
     bash \
@@ -64,7 +64,7 @@ RUN apt-get update --no-cache add \
     tzdata \
     util-linux \
     whois \
-  && apt-get --update --no-cache add -t build-dependencies \
+  && apt-get --update add -t build-dependencies \
     build-base \
     make \
     mariadb-dev \
@@ -100,7 +100,7 @@ RUN addgroup -g ${PGID} librenms \
   && chmod +x /usr/bin/distro
 
 WORKDIR ${LIBRENMS_PATH}
-RUN atp-get update --no-cache add -t build-dependencies \
+RUN atp-get update -t build-dependencies \
     build-base \
     linux-headers \
     musl-dev \
