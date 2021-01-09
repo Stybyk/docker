@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 
-RUN apt-get update -t build-dependencies \
+RUN apt-get update \
     busybox-extras \
     acl \
     bash \
@@ -100,7 +100,7 @@ RUN addgroup -g ${PGID} librenms \
   && chmod +x /usr/bin/distro
 
 WORKDIR ${LIBRENMS_PATH}
-RUN atp-get update -t build-dependencies \
+RUN atp-get update \
     build-base \
     linux-headers \
     musl-dev \
