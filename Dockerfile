@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 
-RUN apk --update --no-cache add \
+RUN apt-get update --no-cache add \
     busybox-extras \
     acl \
     bash \
@@ -64,7 +64,7 @@ RUN apk --update --no-cache add \
     tzdata \
     util-linux \
     whois \
-  && apk --update --no-cache add -t build-dependencies \
+  && apt-get --update --no-cache add -t build-dependencies \
     build-base \
     make \
     mariadb-dev \
@@ -73,8 +73,7 @@ RUN apk --update --no-cache add \
   && pip3 install --upgrade pip \
   && pip3 install python-memcached mysqlclient --upgrade \
   && curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/bin --filename=composer \
-  && apk del build-dependencies \
-  && rm -rf /var/cache/apk/* /var/www/* /tmp/* \
+  && rm -rf /var/www/* /tmp/* \
   && echo "/usr/sbin/fping -6 \$@" > /usr/sbin/fping6 \
   && chmod +x /usr/sbin/fping6 \
   && chmod u+s,g+s \
@@ -101,7 +100,7 @@ RUN addgroup -g ${PGID} librenms \
   && chmod +x /usr/bin/distro
 
 WORKDIR ${LIBRENMS_PATH}
-RUN apk --update --no-cache add -t build-dependencies \
+RUN atp-get update --no-cache add -t build-dependencies \
     build-base \
     linux-headers \
     musl-dev \
